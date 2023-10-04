@@ -146,6 +146,15 @@
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
+    // Theme
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_Theme_", nil)];
+    row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
+    [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
+    [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
+    [row.cellConfig setObject:[[UIImage imageNamed:@"gear"] imageWithColor:UIColor.systemGrayColor size:25] forKey:@"imageView.image"];
+    row.action.viewControllerClass = [CCAdvanced class];
+    [section addFormRow:row];
+    
     // Advanced
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"advanced" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_advanced_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
