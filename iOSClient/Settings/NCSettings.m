@@ -22,6 +22,7 @@
 //
 
 #import "NCSettings.h"
+#import "CCTheme.h"
 #import "CCAdvanced.h"
 #import "CCManageAccount.h"
 #import "CCManageAutoUpload.h"
@@ -141,18 +142,18 @@
         [section addFormRow:row];
     }
 
-    // Section Advanced -------------------------------------------------
+    // Section Theme and Advanced -------------------------------------------------
     
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
     // Theme
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_Theme_", nil)];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_theme_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
     [row.cellConfig setObject:[[UIImage imageNamed:@"gear"] imageWithColor:UIColor.systemGrayColor size:25] forKey:@"imageView.image"];
-    row.action.viewControllerClass = [CCAdvanced class];
+    row.action.viewControllerClass = [CCTheme class];
     [section addFormRow:row];
     
     // Advanced
