@@ -32,15 +32,34 @@
     // Section : COLOR --------------------------------------------------------------
     section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_information_", nil)];
     [form addFormSection:section];
-    
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"autoUpload" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_settings_autoupload_", nil)];
+
+    //Add title to Localizable
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_color_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
     [row.cellConfig setObject:[[UIImage imageNamed:@"autoUpload"] imageWithColor:UIColor.systemRedColor size:25] forKey:@"imageView.image"];
     row.action.viewControllerClass = [CCAdvanced class];
-
     [section addFormRow:row];
+    
+    //Add title to Localizable
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_background_image_", nil)];
+    row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
+    [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
+    [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
+    [row.cellConfig setObject:[[UIImage imageNamed:@"autoUpload"] imageWithColor:UIColor.systemBlueColor size:25] forKey:@"imageView.image"];
+    row.action.viewControllerClass = [CCAdvanced class];
+    [section addFormRow:row];
+    
+    //Add title to Localizable
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_color_", nil)];
+    row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
+    [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
+    [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
+    [row.cellConfig setObject:[[UIImage imageNamed:@"autoUpload"] imageWithColor:UIColor.systemPurpleColor size:25] forKey:@"imageView.image"];
+    row.action.viewControllerClass = [CCAdvanced class];
+    [section addFormRow:row];
+
     self.tableView.showsVerticalScrollIndicator = NO;
     self.form = form;
 }
