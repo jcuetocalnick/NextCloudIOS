@@ -364,7 +364,10 @@
 "_select_offline_warning_"      = "Making multiple files and folders available offline may take a while and use a lot of memory while doing so.";
 "_advanced_"                    = "Advanced";
 "_theme_"                       = "Theme";
-"_app_Name_"                    = "App Name:";
+"_theme_color_"                 = "Color";
+"_theme_background_image_"      = "Background Image";
+"_theme_slogan_"                = "Slogan";
+"_customize_"                   = "Customize";
 "_permissions_"                 = "Permissions";
 "_disable_files_app_"           = "Disable Files App integration";
 "_disable_files_app_footer_"    = "Do not permit the access of files via the iOS Files application";
