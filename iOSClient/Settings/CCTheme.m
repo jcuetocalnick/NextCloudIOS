@@ -33,7 +33,7 @@
     section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_information_", nil)];
     [form addFormSection:section];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeName title:NSLocalizedString(@"_app_name_", nil)];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeName title:NSLocalizedString(@"_app_Name_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
