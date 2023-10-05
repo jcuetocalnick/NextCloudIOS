@@ -30,20 +30,20 @@
     form.rowNavigationOptions = XLFormRowNavigationOptionNone;
 
     // Section : COLOR --------------------------------------------------------------
-    section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_information_", nil)];
+    section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_customize_", nil)];
     [form addFormSection:section];
 
     //Add title to Localizable
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_color_", nil)];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_theme_color_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
-    [row.cellConfig setObject:[[UIImage imageNamed:@"autoUpload"] imageWithColor:UIColor.systemRedColor size:25] forKey:@"imageView.image"];
+    [row.cellConfig setObject:[[UIImage imageNamed:@"palette"] imageWithColor:UIColor.systemRedColor size:25] forKey:@"imageView.image"];
     row.action.viewControllerClass = [CCAdvanced class];
     [section addFormRow:row];
     
     //Add title to Localizable
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_background_image_", nil)];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_theme_background_image_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
@@ -52,11 +52,11 @@
     [section addFormRow:row];
     
     //Add title to Localizable
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_color_", nil)];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"theme" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_theme_slogan_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = UIColor.secondarySystemGroupedBackgroundColor;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:UIColor.labelColor forKey:@"textLabel.textColor"];
-    [row.cellConfig setObject:[[UIImage imageNamed:@"autoUpload"] imageWithColor:UIColor.systemPurpleColor size:25] forKey:@"imageView.image"];
+    [row.cellConfig setObject:[[UIImage imageNamed:@"note.text"] imageWithColor:UIColor.systemPurpleColor size:25] forKey:@"imageView.image"];
     row.action.viewControllerClass = [CCAdvanced class];
     [section addFormRow:row];
 
