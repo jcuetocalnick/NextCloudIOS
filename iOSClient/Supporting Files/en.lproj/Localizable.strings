@@ -363,7 +363,7 @@
 "_user_editprofile_"            = "Edit profile";
 "_select_offline_warning_"      = "Making multiple files and folders available offline may take a while and use a lot of memory while doing so.";
 "_advanced_"                    = "Advanced";
-"_theme_"                       = "Theme";
+"_theme_"                       = "Theme Settings";
 "_app_Name_"                    = "App Name:";
 "_theme_color_"                 = "Color";
 "_theme_background_image_"      = "Background Image";
