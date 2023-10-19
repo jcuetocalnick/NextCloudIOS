@@ -156,13 +156,7 @@ class NCMore: UIViewController, UITableViewDelegate, UITableViewDataSource {
         item.order = 70
         functionMenu.append(item)
         
-            //theme settings
-        item = NKExternalSite()
-        item.name = "Theme Settings"
-        item.icon = "paintbrush.pointed.fill"
-        item.url = "openStoryboardNCScan"
-        item.order = 71
-        functionMenu.append(item)
+
 
         // ITEM : Trash
         if NCGlobal.shared.capabilityServerVersionMajor >= NCGlobal.shared.nextcloudVersion15 {

@@ -9,5 +9,8 @@
 
 @interface CCTheme : XLFormViewController
 
+@property (nonatomic , strong) NSString *slogan;
+
+
 @end
 

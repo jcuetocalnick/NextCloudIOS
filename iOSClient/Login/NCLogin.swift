@@ -25,6 +25,7 @@ import UIKit
 import NextcloudKit
 import SwiftEntryKit
 
+
 class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     @IBOutlet weak var imageBrand: UIImageView!
@@ -79,7 +80,8 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
         // Login button
         loginAddressDetail.textColor = textColor
-        loginAddressDetail.text = String.localizedStringWithFormat(NSLocalizedString("_login_address_detail_", comment: ""), NCBrandOptions.shared.brand)
+ loginAddressDetail.text = String.localizedStringWithFormat(NSLocalizedString("_login_address_detail_", comment: ""), NCBrandOptions.shared.brand)
+        
 
         // Login Image
         loginImage.image = UIImage(named: "arrow.right")?.image(color: textColor, size: 100)
@@ -453,3 +455,4 @@ extension NCLogin: NCShareAccountsDelegate {
         isUrlValid(url: url, user: user)
     }
 }
+
