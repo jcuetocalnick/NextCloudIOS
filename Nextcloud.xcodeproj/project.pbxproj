@@ -19,6 +19,10 @@
 		773147EA2ACD064800459824 /* CCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 773147E92ACD064800459824 /* CCTheme.m */; };
 		8491B1CD273BBA82001C8C5B /* UIViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491B1CC273BBA82001C8C5B /* UIViewController+Menu.swift */; };
 		A1A5B4992ABA6A47005C70AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A5B4982ABA690A005C70AA /* GoogleService-Info.plist */; };
+		A1C5680C2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */; };
+		A1C5680D2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */; };
+		A1C5680E2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */; };
+		A1C5680F2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */; };
 		AF1A9B6427D0CA1E00F17A9E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1A9B6327D0CA1E00F17A9E /* UIAlertController+Extension.swift */; };
 		AF1A9B6527D0CC0500F17A9E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1A9B6327D0CA1E00F17A9E /* UIAlertController+Extension.swift */; };
 		AF22B206277B4E4C00DAB0CC /* NCCreateFormUploadConflict.swift in Sources */ = {isa = PBXBuildFile; fileRef = F704B5E42430AA8000632F5F /* NCCreateFormUploadConflict.swift */; };
@@ -770,6 +774,7 @@
 		773147E92ACD064800459824 /* CCTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTheme.m; sourceTree = "<group>"; };
 		8491B1CC273BBA82001C8C5B /* UIViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Menu.swift"; sourceTree = "<group>"; };
 		A1A5B4982ABA690A005C70AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AF1A9B6327D0CA1E00F17A9E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		AF22B20B277C6F4D00DAB0CC /* NCShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCShareCell.swift; sourceTree = "<group>"; };
 		AF22B215277D196700DAB0CC /* NCShareExtension+DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NCShareExtension+DataSource.swift"; sourceTree = "<group>"; };
@@ -2165,6 +2170,7 @@
 				F7AE00F4230D5F9E007ACF8A /* NCLoginWeb.swift */,
 				F7BC287D26663F6C004D46C5 /* NCViewCertificateDetails.storyboard */,
 				F7BC287F26663F85004D46C5 /* NCViewCertificateDetails.swift */,
+				A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3425,6 +3431,7 @@
 				F780710A1EDAB65800EAFFF6 /* NSNotificationCenter+MainThread.m in Sources */,
 				F79EC77F26316193004E59D6 /* NCRenameFile.swift in Sources */,
 				AF22B208277B4E4C00DAB0CC /* NCCreateFormUploadConflictCell.swift in Sources */,
+				A1C5680E2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */,
 				F7148041262EBE4000693E51 /* NCShareExtension.swift in Sources */,
 				F76B3CCF1EAE01BD00921AC9 /* NCBrand.swift in Sources */,
 				F7BAADCC1ED5A87C00B7EAD4 /* NCManageDatabase.swift in Sources */,
@@ -3435,6 +3442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C5680D2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */,
 				F78302FD28B4C42B00B84583 /* NCUserBaseUrl.swift in Sources */,
 				F793E5A128B76541005E4B02 /* NotificationCenter+MainThread.swift in Sources */,
 				F76DEE9928F808AF0041B1C9 /* LockscreenWidgetView.swift in Sources */,
@@ -3516,6 +3524,7 @@
 				F70460542499095400BB98A7 /* NotificationCenter+MainThread.swift in Sources */,
 				F78A10C329322E8A008499B8 /* NCManageDatabase+Directory.swift in Sources */,
 				F7BF9D862934CA21009EE9A6 /* NCManageDatabase+LayoutForView.swift in Sources */,
+				A1C5680F2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */,
 				F7E98C1827E0D0FC001F9F19 /* NCManageDatabase+Video.swift in Sources */,
 				F785EEA42461A4A600B3F945 /* NCUtility.swift in Sources */,
 				F79B646226CA661600838ACA /* UIControl+Extension.swift in Sources */,
@@ -3568,6 +3577,7 @@
 				F702F2CF25EE5B5C008F8E80 /* NCGlobal.swift in Sources */,
 				F72CD63A25C19EBF00F46F9A /* NCAutoUpload.swift in Sources */,
 				773147EA2ACD064800459824 /* CCTheme.m in Sources */,
+				A1C5680C2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */,
 				AF93471D27E2361E002537EE /* NCShareAdvancePermissionFooter.swift in Sources */,
 				AF1A9B6427D0CA1E00F17A9E /* UIAlertController+Extension.swift in Sources */,
 				F73B422C2476764F00A30FD3 /* NCNotification.swift in Sources */,
