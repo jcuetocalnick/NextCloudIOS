@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fme-9b-JCH">
+                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BpI-xK-1SU">
                                 <rect key="frame" x="87" y="226.5" width="240" height="120"/>
                                 <constraints>
@@ -97,7 +100,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="SmR-vy-HKK" kind="show" id="IdG-gD-Hq0"/>
+                                    <segue destination="SmR-vy-HKK" kind="show" identifier="show" id="UeM-i7-fuh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,11 +112,15 @@
                             <constraint firstItem="8lf-3Y-f5R" firstAttribute="bottom" secondItem="LZ5-sQ-pcA" secondAttribute="bottom" constant="20" id="8H7-fT-Nb7"/>
                             <constraint firstItem="8lf-3Y-f5R" firstAttribute="trailing" secondItem="HQd-pF-3cE" secondAttribute="trailing" constant="50" id="94K-sw-8AT"/>
                             <constraint firstItem="6tp-bh-Z9k" firstAttribute="centerX" secondItem="8lf-3Y-f5R" secondAttribute="centerX" id="Apc-1U-CwU"/>
+                            <constraint firstAttribute="bottom" secondItem="fme-9b-JCH" secondAttribute="bottom" id="C8i-Je-G8k"/>
+                            <constraint firstItem="fme-9b-JCH" firstAttribute="top" secondItem="8lf-3Y-f5R" secondAttribute="top" id="FBI-km-cUU"/>
                             <constraint firstItem="BpI-xK-1SU" firstAttribute="top" secondItem="Bv6-g3-l0M" secondAttribute="centerY" multiplier="0.5" constant="2.5" id="Gkg-up-7eW"/>
                             <constraint firstItem="8lf-3Y-f5R" firstAttribute="centerX" secondItem="BpI-xK-1SU" secondAttribute="centerX" id="IxG-UI-0vq"/>
                             <constraint firstItem="6tp-bh-Z9k" firstAttribute="top" secondItem="PJH-5i-Tkf" secondAttribute="bottom" constant="100" id="MZQ-GT-XSM"/>
                             <constraint firstItem="PJH-5i-Tkf" firstAttribute="top" secondItem="szn-G7-5sK" secondAttribute="bottom" constant="18" id="Vfj-lG-7wT"/>
+                            <constraint firstItem="fme-9b-JCH" firstAttribute="leading" secondItem="8lf-3Y-f5R" secondAttribute="leading" id="X7B-EC-22g"/>
                             <constraint firstItem="Al0-LA-Ndt" firstAttribute="centerX" secondItem="HQd-pF-3cE" secondAttribute="centerX" id="Yll-3L-vuj"/>
+                            <constraint firstItem="fme-9b-JCH" firstAttribute="trailing" secondItem="8lf-3Y-f5R" secondAttribute="trailing" id="bE7-by-ibn"/>
                             <constraint firstItem="8lf-3Y-f5R" firstAttribute="trailing" secondItem="LZ5-sQ-pcA" secondAttribute="trailing" constant="44" id="bLk-wv-V0S"/>
                             <constraint firstItem="HQd-pF-3cE" firstAttribute="centerY" secondItem="szn-G7-5sK" secondAttribute="centerY" id="cG8-kL-pdu"/>
                             <constraint firstItem="Al0-LA-Ndt" firstAttribute="centerY" secondItem="HQd-pF-3cE" secondAttribute="centerY" id="eOF-06-PmZ"/>
@@ -126,6 +133,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6v9-Gy-jiv"/>
                     <connections>
+                        <outlet property="backgroundImage" destination="fme-9b-JCH" id="pfW-lR-eyJ"/>
                         <outlet property="baseUrl" destination="szn-G7-5sK" id="rpO-mh-09O"/>
                         <outlet property="certificate" destination="5lM-dt-8fM" id="vw6-cH-njm"/>
                         <outlet property="imageBrand" destination="BpI-xK-1SU" id="0tB-69-RNs"/>
@@ -143,9 +151,9 @@
         <!--Theme View Controller-->
         <scene sceneID="BVn-Yn-dut">
             <objects>
-                <viewController id="SmR-vy-HKK" customClass="ThemeViewController" customModule="Nextcloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThemeViewController" id="SmR-vy-HKK" customClass="ThemeViewController" customModule="Nextcloud" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EvG-do-81J">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of the app:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6Y-fF-xFr">
@@ -218,8 +226,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-Yf-fUB">
                                 <rect key="frame" x="207" y="404" width="128" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Upload photo"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ehd-Ra-oyJ" appends="YES" id="Ibw-mF-zK9"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVt-M1-fBe">
                                 <rect key="frame" x="344" y="338" width="50" height="35"/>
@@ -229,6 +241,15 @@
                                 <rect key="frame" x="344" y="404" width="50" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-6L-SpU">
+                                <rect key="frame" x="169" y="582" width="78" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Submit"/>
+                                <connections>
+                                    <action selector="submitClicked:" destination="SmR-vy-HKK" eventType="touchUpInside" id="AIg-U8-KQI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RKZ-ah-sAc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -236,12 +257,19 @@
                     <navigationItem key="navigationItem" id="HnZ-WA-fGB"/>
                     <connections>
                         <outlet property="appName" destination="ado-XM-CWW" id="5DK-76-gfv"/>
+                        <outlet property="background" destination="tXu-iH-KIM" id="SG0-yr-tf1"/>
                         <outlet property="color" destination="QO9-q8-Wce" id="vZH-oh-FOS"/>
                         <outlet property="logo" destination="ZVt-M1-fBe" id="yxy-3H-gxl"/>
                         <outlet property="slogan" destination="4ch-tY-qOf" id="uEf-cb-KRm"/>
+                        <outlet property="uploadBackground" destination="lLk-Yf-fUB" id="yAc-5s-Cih"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1TI-hJ-gw5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ehd-Ra-oyJ">
+                    <connections>
+                        <action selector="onTappedUploadBackground:" destination="SmR-vy-HKK" id="CWP-Ja-Hb5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4644.927536231884" y="-531.02678571428567"/>
         </scene>

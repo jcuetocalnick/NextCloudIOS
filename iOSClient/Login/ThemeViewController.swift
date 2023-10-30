@@ -5,9 +5,11 @@
 //  Created by Jane Calnick on 10/17/23.
 //  Copyright © 2023 Marino Faggiana. All rights reserved.
 //
-
+import SwiftUI
 import PhotosUI
 import UIKit
+import NextcloudKit
+import SwiftEntryKit
 
 class ThemeViewController: UIViewController {
 
@@ -15,8 +17,11 @@ class ThemeViewController: UIViewController {
     @IBOutlet weak var slogan: UITextField!
     @IBOutlet weak var color: UIColorWell!
     @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var uploadBackground: UIButton!
     
     private var pickedImage: UIImage?
+    private var showingAlert = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +57,23 @@ class ThemeViewController: UIViewController {
         present(picker, animated: true)
     }
 
+    @IBAction func onTappedUploadBackground(_ sender: Any) {
+        let photoVC = UIImagePickerController()
+        photoVC.sourceType = .photoLibrary
+        photoVC.delegate = self
+        photoVC.allowsEditing = true
+        present(photoVC, animated: true)
+    }
+    
+    @IBAction func submitClicked(_ sender: Any) {
+        let newViewController = storyboard?.instantiateViewController(withIdentifier: "NCLogin") as! NCLogin
+        
+        newViewController.newImage = background.image
+        present(newViewController, animated: true, completion: nil)
+
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -103,5 +125,31 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show" {
+            let destinationVC: NCLogin = segue.destination as! NCLogin
+            destinationVC.imageBrand.image = background.image
+        }
+
+    }
+
+}
+
+extension ThemeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let bImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as?
+            UIImage{
+            background.image = bImage
+        }
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

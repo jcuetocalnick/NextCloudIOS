@@ -26,6 +26,7 @@ import NextcloudKit
 import SwiftEntryKit
 
 
+
 class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     @IBOutlet weak var imageBrand: UIImageView!
@@ -45,6 +46,8 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     private var shareAccounts: [NKShareAccounts.DataAccounts]?
 
+    @IBOutlet weak var backgroundImage: UIImageView!
+    var newImage: UIImage!
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -65,6 +68,10 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
         // Image Brand
         imageBrand.image = UIImage(named: "logo")
 
+        if newImage != nil{
+            backgroundImage.image = newImage
+        }
+        
         // Url
         baseUrl.textColor = textColor
         baseUrl.tintColor = textColor
