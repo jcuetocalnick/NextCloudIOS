@@ -226,15 +226,6 @@
                                     <outletCollection property="gestureRecognizers" destination="ehd-Ra-oyJ" appends="YES" id="Ibw-mF-zK9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-6L-SpU">
-                                <rect key="frame" x="169" y="582" width="78" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Submit"/>
-                                <connections>
-                                    <action selector="sendOnClick:" destination="SmR-vy-HKK" eventType="touchUpInside" id="2er-Ko-sNz"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Background Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-5v-b9z">
                                 <rect key="frame" x="33" y="382" width="148" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -242,14 +233,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phH-00-ZCX">
+                                <rect key="frame" x="343" y="314" width="38" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jap-f6-oXO">
+                                <rect key="frame" x="343" y="376" width="38" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RKZ-ah-sAc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HnZ-WA-fGB"/>
+                    <navigationItem key="navigationItem" id="ACU-dL-8xb">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="CFE-Jo-vMe">
+                            <connections>
+                                <action selector="sendOnClick:" destination="SmR-vy-HKK" id="f9D-kf-whc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="appName" destination="ado-XM-CWW" id="5DK-76-gfv"/>
+                        <outlet property="backgroundImage" destination="jap-f6-oXO" id="lv3-zz-ckM"/>
                         <outlet property="color" destination="QO9-q8-Wce" id="vZH-oh-FOS"/>
+                        <outlet property="logo" destination="phH-00-ZCX" id="8T4-gj-mTa"/>
                         <outlet property="slogan" destination="4ch-tY-qOf" id="uEf-cb-KRm"/>
                     </connections>
                 </viewController>
@@ -260,7 +267,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4644.927536231884" y="-531.02678571428567"/>
+            <point key="canvasLocation" x="4643.4782608695659" y="-531.02678571428567"/>
         </scene>
         <!--Login Web-->
         <scene sceneID="3Rv-vf-u17">

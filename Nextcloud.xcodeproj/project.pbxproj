@@ -18,6 +18,7 @@
 		3781B9B023DB2B7E006B4B1D /* AppDelegate+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B9AF23DB2B7E006B4B1D /* AppDelegate+Menu.swift */; };
 		773147EA2ACD064800459824 /* CCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 773147E92ACD064800459824 /* CCTheme.m */; };
 		8491B1CD273BBA82001C8C5B /* UIViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491B1CC273BBA82001C8C5B /* UIViewController+Menu.swift */; };
+		A125C8D42AF6C18700404840 /* ThemeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A125C8D32AF6C18700404840 /* ThemeAssets.xcassets */; };
 		A1A5B4992ABA6A47005C70AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A5B4982ABA690A005C70AA /* GoogleService-Info.plist */; };
 		A1C5680C2AE20B6500388EE5 /* ThemeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */; };
 		AF1A9B6427D0CA1E00F17A9E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1A9B6327D0CA1E00F17A9E /* UIAlertController+Extension.swift */; };
@@ -767,6 +768,7 @@
 		773147E82ACD04EA00459824 /* CCTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTheme.h; sourceTree = "<group>"; };
 		773147E92ACD064800459824 /* CCTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTheme.m; sourceTree = "<group>"; };
 		8491B1CC273BBA82001C8C5B /* UIViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Menu.swift"; sourceTree = "<group>"; };
+		A125C8D32AF6C18700404840 /* ThemeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ThemeAssets.xcassets; sourceTree = "<group>"; };
 		A1A5B4982ABA690A005C70AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1C5680B2AE20B6500388EE5 /* ThemeViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AF1A9B6327D0CA1E00F17A9E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
@@ -2425,6 +2427,7 @@
 				F7EFC0CB256BF89300461AAD /* UserStatus */,
 				F7BFFA991A24D7BB0044ED85 /* Utility */,
 				F79630EC215526B60015EEA5 /* Viewer */,
+				A125C8D32AF6C18700404840 /* ThemeAssets.xcassets */,
 			);
 			path = iOSClient;
 			sourceTree = "<group>";
@@ -3174,6 +3177,7 @@
 				F77B0F611D118A16002130FE /* Acknowledgements.rtf in Resources */,
 				F7EDE509262DA9D600414FE6 /* NCSelectCommandViewSelect.xib in Resources */,
 				F732D23327CF8AED000B0F1B /* NCPlayerToolBar.xib in Resources */,
+				A125C8D42AF6C18700404840 /* ThemeAssets.xcassets in Resources */,
 				F7CF16A32A4D7C7A000FF107 /* NCMoreUserCell.xib in Resources */,
 				F73D11FA253C5F4800DF9BEC /* NCViewerNextcloudText.storyboard in Resources */,
 				F7EDE51B262DD0C400414FE6 /* NCSelectCommandViewCopyMove.xib in Resources */,

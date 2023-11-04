@@ -64,9 +64,19 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             textColor = .white
             textColorOpponent = .black
         }
+        
+        let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
+        let imageManager = ImageManager()
+        let loadedImage = imageManager.loadImageFromCustomDirectory(directoryPath: customDirectoryPath, imageName: "savedImage.png")
 
+        if let image = loadedImage {
+            imageBrand.image = loadedImage
+        } else {
+            // Image Brand
+            imageBrand.image = UIImage(named: "logo")
+        }
         // Image Brand
-        imageBrand.image = UIImage(named: "logo")
+//        imageBrand.image = UIImage(named: "logo")
 
         if newImage != nil{
             backgroundImage.image = newImage
