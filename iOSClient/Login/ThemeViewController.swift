@@ -57,9 +57,7 @@ class ThemeViewController: UIViewController {
     
 @IBAction func sendOnClick(_ sender: Any) {
     let imageManager = ImageManager()
-    let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
-    let loadedImage = imageManager.loadImageFromCustomDirectory(directoryPath: customDirectoryPath, imageName: "savedImage.png")
-
+    let loadedImage = imageManager.loadImageFromDocumentsDirectory()
     if let image = loadedImage, let ncLoginViewController = getCurrentNCLoginViewController() {
         ncLoginViewController.imageBrand.image = image
     } else if let ncLoginViewController = getCurrentNCLoginViewController() {
@@ -163,10 +161,7 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
                     // Usage:
                     let imageToSave = self?.pickedImage // Provide the image you want to save
                     let imageManager = ImageManager()
-                    let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
-                    // Save the image to the custom directory
-                    imageManager.saveImageToCustomDirectory(image: imageToSave!, directoryPath: customDirectoryPath, imageName: "savedImage.png")
-//                    imageManager.saveImageToDocumentsDirectory(image: imageToSave!, subdirectory: "imageBrand")
+                    imageManager.saveImageToDocumentsDirectory(image: imageToSave!)
                 }
             }
         }
@@ -174,33 +169,41 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
 }
 
 class ImageManager {
-    // Assuming you have the selected image from PHPickerViewController stored in the variable 'selectedImage'
-    func saveImageToCustomDirectory(image: UIImage, directoryPath: String, imageName: String) {
+    func saveImageToDocumentsDirectory(image: UIImage) {
         guard let imageData = image.pngData() else {
             print("Failed to convert the image to data")
             return
         }
 
-        let fileURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+        // Get the URL for the Documents directory
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            // Append a filename or use a unique identifier to save the image
+            let fileURL = documentsDirectory.appendingPathComponent("savedImage.png")
 
-        do {
-            try imageData.write(to: fileURL)
-            print("Image saved to: \(fileURL.path)")
-        } catch {
-            print("Error saving image: \(error)")
+            do {
+                try imageData.write(to: fileURL)
+                print("Image saved to: \(fileURL.absoluteString)")
+
+                // At this point, the image is saved and you can use 'fileURL' as needed
+                // You might, for example, want to display the image or perform further actions.
+            } catch {
+                print("Error saving image: \(error)")
+            }
         }
     }
     
-    func loadImageFromCustomDirectory(directoryPath: String, imageName: String) -> UIImage? {
-        let fileURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+    func loadImageFromDocumentsDirectory() -> UIImage? {
+            if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let fileURL = documentsDirectory.appendingPathComponent("savedImage.png")
 
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            let image = UIImage(data: imageData)
-            return image
-        } catch {
-            print("Error loading image: \(error)")
+                do {
+                    let imageData = try Data(contentsOf: fileURL)
+                    let image = UIImage(data: imageData)
+                    return image
+                } catch {
+                    print("Error loading image: \(error)")
+                }
+            }
             return nil
         }
-    }
 }

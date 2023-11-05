@@ -65,9 +65,8 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             textColorOpponent = .black
         }
         
-        let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
         let imageManager = ImageManager()
-        let loadedImage = imageManager.loadImageFromCustomDirectory(directoryPath: customDirectoryPath, imageName: "savedImage.png")
+        let loadedImage = imageManager.loadImageFromDocumentsDirectory()
 
         if let image = loadedImage {
             imageBrand.image = loadedImage
@@ -75,8 +74,6 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             // Image Brand
             imageBrand.image = UIImage(named: "logo")
         }
-        // Image Brand
-//        imageBrand.image = UIImage(named: "logo")
 
         if newImage != nil{
             backgroundImage.image = newImage
@@ -156,7 +153,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
                 }
             }
         }
-
+        
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         view.backgroundColor = NCBrandColor.shared.customer
 
