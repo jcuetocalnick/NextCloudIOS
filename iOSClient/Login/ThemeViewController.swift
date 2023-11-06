@@ -31,6 +31,8 @@ class ThemeViewController: UIViewController {
     
     public var selectedColor : UIColor?
     private var pickedImage: UIImage?
+    private var pickedBackground: UIImage?
+
     
     weak var imageSelectionDelegate: ImageSelectionDelegate?
     
@@ -57,12 +59,20 @@ class ThemeViewController: UIViewController {
     
 @IBAction func sendOnClick(_ sender: Any) {
     let imageManager = ImageManager()
-    let loadedImage = imageManager.loadImageFromDocumentsDirectory()
+    let loadedImage = imageManager.loadImageFromDocumentsDirectory(imageType: "logo")
+    let loadedBackground = imageManager.loadImageFromDocumentsDirectory(imageType: "background")
     if let image = loadedImage, let ncLoginViewController = getCurrentNCLoginViewController() {
         ncLoginViewController.imageBrand.image = image
     } else if let ncLoginViewController = getCurrentNCLoginViewController() {
         ncLoginViewController.imageBrand.image = UIImage(named: "logo")
     }
+    
+    if let bImage = loadedBackground, let ncLoginViewController = getCurrentNCLoginViewController() {
+        ncLoginViewController.backgroundImage.image = bImage
+    }
+    
+    
+
     
     func getCurrentNCLoginViewController() -> NCLogin? {
         if let navController = navigationController {
@@ -110,6 +120,28 @@ class ThemeViewController: UIViewController {
         present(picker, animated: true)
     }
     
+    @IBAction func onTappedUploadBackground(_ sender: Any) {
+        let photoVC = UIImagePickerController()
+        photoVC.sourceType = .photoLibrary
+        photoVC.delegate = self
+        photoVC.allowsEditing = true
+        present(photoVC, animated: true)
+    }
+    
+    private func presentBadImagelert() {
+        let alertController = UIAlertController(
+            title: "Oops...",
+            message: "Image Could not be uploaded. Try Again.",
+            preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true)
+    }
+
+    
+    
     /*
      // MARK: - Navigation
      
@@ -121,10 +153,28 @@ class ThemeViewController: UIViewController {
      */
 }
     
-extension ThemeViewController: PHPickerViewControllerDelegate {
+extension ThemeViewController: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // PHPickerViewController required delegate method.
     // Returns PHPicker result containing picked image data.
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let bImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as?
+                UIImage{
+                pickedBackground = bImage
+                backgroundImage.image = bImage
+                let imageToSave = self.pickedBackground
+                let imageManager = ImageManager()
+                imageManager.saveImageToDocumentsDirectory(image: imageToSave!, imageType: "background")
+
+            }
+            picker.dismiss(animated: true, completion: nil)
+
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         // Dismiss the picker
@@ -161,7 +211,7 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
                     // Usage:
                     let imageToSave = self?.pickedImage // Provide the image you want to save
                     let imageManager = ImageManager()
-                    imageManager.saveImageToDocumentsDirectory(image: imageToSave!)
+                    imageManager.saveImageToDocumentsDirectory(image: imageToSave!, imageType: "logo")
                 }
             }
         }
@@ -169,7 +219,7 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
 }
 
 class ImageManager {
-    func saveImageToDocumentsDirectory(image: UIImage) {
+    func saveImageToDocumentsDirectory(image: UIImage, imageType: String) {
         guard let imageData = image.pngData() else {
             print("Failed to convert the image to data")
             return
@@ -178,7 +228,13 @@ class ImageManager {
         // Get the URL for the Documents directory
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             // Append a filename or use a unique identifier to save the image
-            let fileURL = documentsDirectory.appendingPathComponent("savedImage.png")
+            let fileURL: URL
+            if imageType == "logo"{
+                fileURL = documentsDirectory.appendingPathComponent("savedImage.png")
+            }else{
+                fileURL = documentsDirectory.appendingPathComponent("savedBackground.png")
+            }
+            
 
             do {
                 try imageData.write(to: fileURL)
@@ -192,7 +248,8 @@ class ImageManager {
         }
     }
     
-    func loadImageFromDocumentsDirectory() -> UIImage? {
+    func loadImageFromDocumentsDirectory(imageType: String) -> UIImage? {
+        if imageType == "logo"{
             if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let fileURL = documentsDirectory.appendingPathComponent("savedImage.png")
 
@@ -204,6 +261,21 @@ class ImageManager {
                     print("Error loading image: \(error)")
                 }
             }
+        }else{
+            if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let fileURL = documentsDirectory.appendingPathComponent("savedBackground.png")
+
+                do {
+                    let backgroundData = try Data(contentsOf: fileURL)
+                    let bImage = UIImage(data: backgroundData)
+                    return bImage
+                } catch {
+                    print("Error loading image: \(error)")
+                }
+            }
+
+        }
+            
             return nil
         }
 }

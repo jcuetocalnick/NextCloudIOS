@@ -66,18 +66,22 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
         }
         
         let imageManager = ImageManager()
-        let loadedImage = imageManager.loadImageFromDocumentsDirectory()
+        let loadedImage = imageManager.loadImageFromDocumentsDirectory(imageType: "logo")
 
         if let image = loadedImage {
-            imageBrand.image = loadedImage
+            imageBrand.image = image
         } else {
             // Image Brand
             imageBrand.image = UIImage(named: "logo")
         }
+        
+        //Load Background Image
+        let loadedBackground = imageManager.loadImageFromDocumentsDirectory(imageType: "background")
 
-        if newImage != nil{
-            backgroundImage.image = newImage
+        if let bImage = loadedBackground {
+            backgroundImage.image = bImage
         }
+
         
         // Url
         baseUrl.textColor = textColor
