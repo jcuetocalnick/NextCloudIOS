@@ -48,6 +48,8 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     @IBOutlet weak var backgroundImage: UIImageView!
     var newImage: UIImage!
+    var newSlogan: String?
+    
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -97,8 +99,11 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
         // Login button
         loginAddressDetail.textColor = textColor
- loginAddressDetail.text = String.localizedStringWithFormat(NSLocalizedString("_login_address_detail_", comment: ""), NCBrandOptions.shared.brand)
-        
+        if newSlogan != nil{
+            loginAddressDetail.text = newSlogan
+        }else{
+            loginAddressDetail.text = String.localizedStringWithFormat(NSLocalizedString("_login_address_detail_", comment: ""), NCBrandOptions.shared.brand)
+        }
 
         // Login Image
         loginImage.image = UIImage(named: "arrow.right")?.image(color: textColor, size: 100)
@@ -463,6 +468,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
             self.present(alertController, animated: true, completion: { })
         }
+    
     }
 }
 

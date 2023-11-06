@@ -83,6 +83,11 @@ class ThemeViewController: UIViewController {
             navigationController.pushViewController(ncLoginViewController, animated: true)
         }
     }
+    
+    if let ncLoginViewController = storyboard?.instantiateViewController(withIdentifier: "NCLogin") as? NCLogin {
+        ncLoginViewController.newSlogan = slogan.text
+        navigationController?.pushViewController(ncLoginViewController, animated: true)
+    }
 
 }
         
@@ -111,6 +116,8 @@ class ThemeViewController: UIViewController {
         // Present the picker
         present(picker, animated: true)
     }
+    
+    
     
     /*
      // MARK: - Navigation
