@@ -46,7 +46,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     private var shareAccounts: [NKShareAccounts.DataAccounts]?
 
-    @IBOutlet weak var backgroundImage: UIImageView!
+//    @IBOutlet weak var backgroundImage: UIImageView!
     var newImage: UIImage!
     var newSlogan: String?
     
@@ -68,7 +68,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
         }
         
         let imageManager = ImageManager()
-        let loadedImage = imageManager.loadImageFromDocumentsDirectory(imageType: "logo")
+        let loadedImage = imageManager.loadImageFromDocumentsDirectory(filename: "logoImage.png")
 
         if let image = loadedImage {
             imageBrand.image = image
@@ -77,13 +77,23 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
             imageBrand.image = UIImage(named: "logo")
         }
         
-        //Load Background Image
-        let loadedBackground = imageManager.loadImageFromDocumentsDirectory(imageType: "background")
+//        //Load Background Image
+//        let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
+//
+//        if let bImage = loadedBackground {
+//            backgroundImage.image = bImage
+//        }
+        // Load Background Image
+            let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
 
         if let bImage = loadedBackground {
-            backgroundImage.image = bImage
-        }
-
+                let backgroundImageView = UIImageView(image: bImage)
+                backgroundImageView.contentMode = .scaleAspectFill
+                backgroundImageView.frame = view.bounds
+                backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                view.addSubview(backgroundImageView)
+                view.sendSubviewToBack(backgroundImageView)
+            }
         
         // Url
         baseUrl.textColor = textColor

@@ -13,7 +13,9 @@ import UIKit
 
 // Add a protocol in ThemeViewController to send the selected image back to NCLogin
 protocol ImageSelectionDelegate: AnyObject {
+//    func didSelectImage(_ image: UIImage)
     func didSelectImage(_ image: UIImage)
+        func didSelectColor(_ color: UIColor)
 }
 
 class ThemeViewController: UIViewController {
@@ -23,6 +25,7 @@ class ThemeViewController: UIViewController {
     @IBOutlet weak var color: UIColorWell!
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
+
     
     // Add a property to hold a reference to NCLogin view controller
     var ncLoginViewController: NCLogin?
@@ -31,6 +34,7 @@ class ThemeViewController: UIViewController {
     
     public var selectedColor : UIColor?
     private var pickedImage: UIImage?
+    private var pickedImage2: UIImage?
     
     weak var imageSelectionDelegate: ImageSelectionDelegate?
     
@@ -57,14 +61,19 @@ class ThemeViewController: UIViewController {
     
 @IBAction func sendOnClick(_ sender: Any) {
     let imageManager = ImageManager()
-    let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
-    let loadedImage = imageManager.loadImageFromCustomDirectory(directoryPath: customDirectoryPath, imageName: "savedImage.png")
-
+    let loadedImage = imageManager.loadImageFromDocumentsDirectory(filename: "savedImage.png")
     if let image = loadedImage, let ncLoginViewController = getCurrentNCLoginViewController() {
         ncLoginViewController.imageBrand.image = image
     } else if let ncLoginViewController = getCurrentNCLoginViewController() {
         ncLoginViewController.imageBrand.image = UIImage(named: "logo")
     }
+    
+//    let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
+//    if let image = loadedBackground, let ncLoginViewController = getCurrentNCLoginViewController() {
+//        ncLoginViewController.backgroundImage.image = image
+//    } else if let ncLoginViewController = getCurrentNCLoginViewController() {
+//        ncLoginViewController.backgroundImage.backgroundColor = color.selectedColor
+//    }
     
     func getCurrentNCLoginViewController() -> NCLogin? {
         if let navController = navigationController {
@@ -79,16 +88,15 @@ class ThemeViewController: UIViewController {
     
     if let navigationController = self.navigationController {
         if let ncLoginViewController = storyboard?.instantiateViewController(withIdentifier: "NCLogin") as? NCLogin {
+            ncLoginViewController.newSlogan = slogan.text
             ncLoginViewController.view.backgroundColor = color.selectedColor
             navigationController.pushViewController(ncLoginViewController, animated: true)
         }
     }
-    
-    if let ncLoginViewController = storyboard?.instantiateViewController(withIdentifier: "NCLogin") as? NCLogin {
-        ncLoginViewController.newSlogan = slogan.text
-        navigationController?.pushViewController(ncLoginViewController, animated: true)
-    }
-
+    // Notify the delegate about the selected color
+        if let delegate = imageSelectionDelegate {
+            delegate.didSelectColor(color.selectedColor ?? .clear)
+        }
 }
         
         
@@ -158,22 +166,25 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
                 self?.showAlert(description: error.localizedDescription)
                 return
             } else {
-
-                // UI updates (like setting image on image view) should be done on main thread
+                // UI updates (like setting image on image view) should be done on the main thread
                 DispatchQueue.main.async {
+                    if (self?.logo.image) != nil { // Check if logo is already set
+                        self?.backgroundImage.image = image
+                        self?.pickedImage2 = image
+                    } else {
+                        self?.logo.image = image
+                        self?.pickedImage = image
+                    }
 
-                    // Set image on preview image view
-                    self?.logo.image = image
+                    if let imageToSave = self?.pickedImage {
+                        let imageManager = ImageManager()
+                        imageManager.saveImageToDocumentsDirectory(image: imageToSave, filename: "logoImage.png")
+                    }
 
-                    // Set image to use when saving post
-                    self?.pickedImage = image
-                    // Usage:
-                    let imageToSave = self?.pickedImage // Provide the image you want to save
-                    let imageManager = ImageManager()
-                    let customDirectoryPath = "/Users/juliopadron/Desktop/NextCloudIOS/iOSClient/ThemeAssets.xcassets"
-                    // Save the image to the custom directory
-                    imageManager.saveImageToCustomDirectory(image: imageToSave!, directoryPath: customDirectoryPath, imageName: "savedImage.png")
-//                    imageManager.saveImageToDocumentsDirectory(image: imageToSave!, subdirectory: "imageBrand")
+                    if let imageToSave = self?.pickedImage2 {
+                        let imageManager = ImageManager()
+                        imageManager.saveImageToDocumentsDirectory(image: imageToSave, filename: "backgroundImage.png")
+                    }
                 }
             }
         }
@@ -181,33 +192,42 @@ extension ThemeViewController: PHPickerViewControllerDelegate {
 }
 
 class ImageManager {
-    // Assuming you have the selected image from PHPickerViewController stored in the variable 'selectedImage'
-    func saveImageToCustomDirectory(image: UIImage, directoryPath: String, imageName: String) {
+    func saveImageToDocumentsDirectory(image: UIImage, filename: String) {
         guard let imageData = image.pngData() else {
             print("Failed to convert the image to data")
             return
         }
 
-        let fileURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+        // Get the URL for the Documents directory
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            // Append the filename to save the image
+            let fileURL = documentsDirectory.appendingPathComponent(filename)
 
-        do {
-            try imageData.write(to: fileURL)
-            print("Image saved to: \(fileURL.path)")
-        } catch {
-            print("Error saving image: \(error)")
+            do {
+                try imageData.write(to: fileURL)
+                print("Image saved to: \(fileURL.absoluteString)")
+
+                // At this point, the image is saved and you can use 'fileURL' as needed
+                // You might, for example, want to display the image or perform further actions.
+            } catch {
+                print("Error saving image: \(error)")
+            }
         }
     }
-    
-    func loadImageFromCustomDirectory(directoryPath: String, imageName: String) -> UIImage? {
-        let fileURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
 
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            let image = UIImage(data: imageData)
-            return image
-        } catch {
-            print("Error loading image: \(error)")
-            return nil
+    
+    func loadImageFromDocumentsDirectory(filename: String) -> UIImage? {
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsDirectory.appendingPathComponent(filename)
+
+            do {
+                let imageData = try Data(contentsOf: fileURL)
+                let image = UIImage(data: imageData)
+                return image
+            } catch {
+                print("Error loading image: \(error)")
+            }
         }
+        return nil
     }
 }
