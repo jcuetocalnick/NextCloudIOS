@@ -205,7 +205,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Upload photo"/>
                                 <connections>
-                                    <action selector="onTappedUploadPhoto:" destination="SmR-vy-HKK" eventType="touchUpInside" id="jOB-co-way"/>
+                                    <action selector="onTappedUploadLogo:" destination="SmR-vy-HKK" eventType="touchUpInside" id="Cba-XJ-peU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-Yf-fUB">
@@ -215,7 +215,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Upload photo"/>
                                 <connections>
-                                    <action selector="onTappedUploadPhoto:" destination="SmR-vy-HKK" eventType="touchUpInside" id="q87-Td-MBB"/>
+                                    <action selector="onTappedUploadBackground:" destination="SmR-vy-HKK" eventType="touchUpInside" id="B78-lJ-dYN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Background Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-5v-b9z">

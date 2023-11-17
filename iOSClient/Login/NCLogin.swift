@@ -25,8 +25,6 @@ import UIKit
 import NextcloudKit
 import SwiftEntryKit
 
-
-
 class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 
     @IBOutlet weak var imageBrand: UIImageView!
@@ -49,6 +47,7 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 //    @IBOutlet weak var backgroundImage: UIImageView!
     var newImage: UIImage!
     var newSlogan: String?
+    weak var imageSelectionDelegate: ImageSelectionDelegate?
     
     // MARK: - View Life Cycle
 
@@ -69,14 +68,15 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
         
         let imageManager = ImageManager()
         let loadedImage = imageManager.loadImageFromDocumentsDirectory(filename: "logoImage.png")
-
-        if let image = loadedImage {
-            imageBrand.image = image
-        } else {
-            // Image Brand
-            imageBrand.image = UIImage(named: "logo")
-        }
         
+        DispatchQueue.main.async {
+            if let image = loadedImage {
+                self.imageBrand.image = image
+            } else {
+                // Image Brand
+                self.imageBrand.image = UIImage(named: "logo")
+            }
+        }
 //        //Load Background Image
 //        let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
 //
@@ -85,15 +85,17 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
 //        }
         // Load Background Image
             let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
-
         if let bImage = loadedBackground {
-                let backgroundImageView = UIImageView(image: bImage)
-                backgroundImageView.contentMode = .scaleAspectFill
-                backgroundImageView.frame = view.bounds
-                backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                view.addSubview(backgroundImageView)
-                view.sendSubviewToBack(backgroundImageView)
-            }
+        setBackgroundImage(bImage)
+//                let backgroundImageView = UIImageView(image: bImage)
+//                backgroundImageView.contentMode = .scaleAspectFill
+//                backgroundImageView.frame = view.bounds
+//                backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//                view.addSubview(backgroundImageView)
+//                view.sendSubviewToBack(backgroundImageView)
+        }else if let selectedColor = ThemeViewController().selectedColor{
+            setBackgroundColor(selectedColor)
+        }
         
         // Url
         baseUrl.textColor = textColor
@@ -180,6 +182,19 @@ class NCLogin: UIViewController, UITextFieldDelegate, NCLoginQRCodeDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+    func setBackgroundImage(_ image: UIImage) {
+        let backgroundImageView = UIImageView(image: image)
+                backgroundImageView.contentMode = .scaleAspectFill
+                backgroundImageView.frame = view.bounds
+                backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                view.insertSubview(backgroundImageView, at: 0)
+                view.sendSubviewToBack(backgroundImageView)
+    }
+    
+    func setBackgroundColor(_ color: UIColor) {
+        self.view.backgroundColor = color
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -490,3 +505,14 @@ extension NCLogin: NCShareAccountsDelegate {
     }
 }
 
+extension NCLogin {
+    func updateUIForColor(_ color: UIColor) {
+        // Update UI elements based on the selected color
+        
+        // For example, update background color or any other UI element
+        self.view.backgroundColor = color
+        
+        // Update any other elements as needed
+        // Example: loginAddressDetail.textColor = updatedColor
+    }
+}
