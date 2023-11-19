@@ -25,7 +25,7 @@ enum UploadType {
 
 class ThemeViewController: UIViewController {
     
-    @IBOutlet weak var appName: UITextField!
+
     @IBOutlet weak var slogan: UITextField!
     @IBOutlet weak var color: UIColorWell!
     @IBOutlet weak var logo: UIImageView!
@@ -84,34 +84,7 @@ class ThemeViewController: UIViewController {
     }
     
     let loadedBackground = imageManager.loadImageFromDocumentsDirectory(filename: "backgroundImage.png")
-//    if let image = loadedBackground {
-//        DispatchQueue.main.async {
-//            if let ncLoginViewController = getCurrentNCLoginViewController() {
-//                // Remove existing background image view if exists
-//                ncLoginViewController.view.subviews
-//                    .filter { $0 is UIImageView }
-//                    .forEach { $0.removeFromSuperview() }
-//                
-//                // Set the loaded background image
-//                let backgroundImageView = UIImageView(image: image)
-//                backgroundImageView.contentMode = .scaleAspectFill
-//                backgroundImageView.frame = ncLoginViewController.view.bounds
-//                backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//                ncLoginViewController.view.insertSubview(backgroundImageView, at: 0)
-//            }
-//        }
-//    }
-//    else if let ncLoginViewController = getCurrentNCLoginViewController() {
-//        DispatchQueue.main.async {
-//            // Check if the background color is different from the saved image
-//            if ncLoginViewController.view.backgroundColor != self.color.selectedColor {
-//                // Delete the background image from documents directory
-//                imageManager.deleteImageFromDocumentsDirectory(filename: "backgroundImage.png")
-//            }
-//            // Set the background color regardless of the image
-//            ncLoginViewController.view.backgroundColor = self.color.selectedColor
-//        }
-//    }
+
     // Load selected background image
         if let image = loadedBackground {
             DispatchQueue.main.async {
@@ -180,32 +153,6 @@ class ThemeViewController: UIViewController {
         currentUploadType = type // Save the current upload type
         present(picker, animated: true)
     }
-    
-//    @IBAction func onTappedUploadPhoto(_ sender: UIButton) {
-//        // Create and configure PHPickerViewController
-//        
-//        // Create a configuration object
-//        var config = PHPickerConfiguration()
-//        
-//        // Set the filter to only show images as options (i.e. no videos, etc.).
-//        config.filter = .images
-//        
-//        // Request the original file format. Fastest method as it avoids transcoding.
-//        config.preferredAssetRepresentationMode = .current
-//        
-//        // Only allow 1 image to be selected at a time.
-//        config.selectionLimit = 1
-//        
-//        // Instantiate a picker, passing in the configuration.
-//        let picker = PHPickerViewController(configuration: config)
-//        
-//        // Set the picker delegate so we can receive whatever image the user picks.
-//        picker.delegate = self
-//        
-//        // Present the picker
-//        present(picker, animated: true)
-//    }
-    
     
     
     /*
